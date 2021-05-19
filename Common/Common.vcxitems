@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{28c8ec13-ea08-459d-9c75-72d20169386e}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Camera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)d3dApp.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)d3dUtil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)d3dx12.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DDSTextureLoader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FrameResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameTimer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GeometryGenerator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Graphics.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Render.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RenderItem.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ShadowMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Ssao.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Texture2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UploadBuffer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Camera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)d3dApp.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)d3dUtil.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DDSTextureLoader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FrameResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameTimer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GeometryGenerator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ShadowMap.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Ssao.cpp" />
+  </ItemGroup>
+</Project>
