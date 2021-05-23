@@ -74,7 +74,7 @@ public:
 	// After modifying camera position/orientation, call to rebuild the view matrix.
 	void UpdateViewMatrix();
 
-private:
+public:
 
 	// Camera coordinate system with coordinates relative to world space.
 	DirectX::XMFLOAT3 mPosition = { 0.0f, 0.0f, 0.0f };
@@ -97,21 +97,27 @@ private:
 	DirectX::XMFLOAT4X4 mProj = MathHelper::Identity4x4();
 
 public:
+	::Transform* parent = nullptr;
+
 	void Update(const GameTimer& gt) override
 	{
-		const float cam_speed = 25.0f * gt.DeltaTime();
+		//{
+		//	const float cam_speed = 0.0f * gt.DeltaTime();
 
-		if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_W))
-			Walk(cam_speed);
+		//	if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_W))
+		//		Walk(cam_speed);
 
-		if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_S))
-			Walk(-cam_speed);
+		//	if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_S))
+		//		Walk(-cam_speed);
 
-		if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_A))
-			Strafe(-cam_speed);
+		//	if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_A))
+		//		Strafe(-cam_speed);
 
-		if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_D))
-			Strafe(cam_speed);
+		//	if (GameInput::IsKeyPressed(INPUT_KEY::KEYBOARD_D))
+		//		Strafe(cam_speed);
+		//}
+
+		mViewDirty = true;
 
 		UpdateViewMatrix();
 	}

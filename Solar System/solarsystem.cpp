@@ -17,7 +17,10 @@
 #include "GameObject.h"
 #include "Graphics.h"
 #include "Render.h"
+#include "Katamari.h"
 #include "Planet.h"
+#include "Moon.h"
+#include "Element.h"
 #include "Platform.h"
 #include "Universe.h"
 #include "Particle.h"
@@ -1505,22 +1508,46 @@ void InitializeGameObjects(Scene& scene)
 {
 	// Подготовка камеры
 	Camera* camera = new Camera();
-	camera->SetPosition(0.0f, 2.0f, -15.0f);
+	camera->SetPosition(-20.0f, 15.0f, 0.0f);
 	scene.SetMainCamera(camera);
 
 	// Добавление объектов на сцену
 	scene.AddGameObject(new Universe("Universe",	"SkysphereGeo",		"UniverseMat"));
-	scene.AddGameObject(new Planet("Sun",			"SphereGeo",		"SunMat",			1.0f,					0.0f,		0.0f));
+	//scene.AddGameObject(new Planet("Sun",			"SphereGeo",		"SunMat",			1.0f,					0.0f,		0.0f));
 	scene.AddGameObject(new Planet("Mercury",		"SphereGeo",		"MercuryMat",		0.3824082784571966f,	0.387f,		87.97f));
 	scene.AddGameObject(new Planet("Venus",			"SphereGeo",		"VenusMat",			0.9488867983693948f,	0.723f,		224.7f));
-	scene.AddGameObject(new Planet("Earth",			"SphereGeo",		"EarthMat",			1.0f,					1.0f,		365.25f));
+	GameObject* go = new Planet("Earth",			"SphereGeo",		"EarthMat", 1.0f, 1.0f, 365.25f);
+	scene.AddGameObject(go);
+	//scene.AddGameObject(new Moon("Moon",			"SphereGeo",		"NeptuneMat", 0.3f, go, 0.2f, 1.0f));
 	scene.AddGameObject(new Planet("Mars",			"SphereGeo",		"MarsMat",			0.5468798996550643f,	1.52f,		686.94f));
 	scene.AddGameObject(new Planet("Jupiter",		"SphereGeo",		"JupiterMat",		11.17905299466918f,		5.20f,		4332.59f));
 	scene.AddGameObject(new Planet("Saturn",		"SphereGeo",		"SaturnMat",		9.423016619629978f,		9.54f,		10759.0f));
 	scene.AddGameObject(new Planet("Uranus",		"SphereGeo",		"UranusMat",		4.154907494512386f,		19.19f,		30688.5f));
 	scene.AddGameObject(new Planet("Neptune",		"SphereGeo",		"NeptuneMat",		3.880526810912512f,		30.07f,		60182.0f));
+
+
+	Katamari* player = new Katamari("Player", "SphereGeo", "SunMat", 1.0f, camera);
+	scene.AddGameObject(player);
+
+	scene.AddGameObject(new Element("P1", "SphereGeo", "EarthMat", 1.0f, player, 2, 0, 4));
+	scene.AddGameObject(new Element("P2", "SphereGeo", "EarthMat", 1.0f, player, 2, 0, 2));
+	//scene.AddGameObject(new Element("P3", "SphereGeo", "EarthMat", 1.0f, player, 2, 0, 0));
+	scene.AddGameObject(new Element("P4", "SphereGeo", "EarthMat", 1.0f, player, 2, 0, -2));
+
+	scene.AddGameObject(new Element("P05", "SphereGeo", "EarthMat", 0.9f, player, 6, 0, -8));
+	scene.AddGameObject(new Element("P06", "SphereGeo", "EarthMat", 0.9f, player, 1, 0, 1));
+	scene.AddGameObject(new Element("P07", "SphereGeo", "EarthMat", 0.9f, player, 8, 0, 5));
+	scene.AddGameObject(new Element("P08", "SphereGeo", "EarthMat", 0.8f, player, 3, 0, 4));
+	scene.AddGameObject(new Element("P09", "SphereGeo", "EarthMat", 0.8f, player, 3, 0, 3));
+	scene.AddGameObject(new Element("P10", "SphereGeo", "EarthMat", 0.8f, player, 6, 0, 6));
+	scene.AddGameObject(new Element("P11", "SphereGeo", "EarthMat", 0.7f, player, 6, 0, -1));
+	scene.AddGameObject(new Element("P12", "SphereGeo", "EarthMat", 0.7f, player, 4, 0, -4));
+	scene.AddGameObject(new Element("P13", "SphereGeo", "EarthMat", 0.7f, player, 7, 0, -2));
+	scene.AddGameObject(new Element("P14", "SphereGeo", "EarthMat", 0.6f, player, 3, 0, -4));
+	scene.AddGameObject(new Element("P15", "SphereGeo", "EarthMat", 0.6f, player, 2, 0, -7));
+	scene.AddGameObject(new Element("P16", "SphereGeo", "EarthMat", 0.6f, player, 0, 0, -4));
+
 	scene.AddGameObject(new Platform("Platform",	"GridGeo",			"debug",			1.0f));
-	scene.AddGameObject(new Particle("Particle",	"GridGeo",			"SpriteMat",		50.0f));
 }
 
 void MyEngine::InitializeShaders()

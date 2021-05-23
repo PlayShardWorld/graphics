@@ -32,27 +32,21 @@ public:
 	// Primitive Type
 	PrimitiveType Type;
 
-
 	// Игровой цикл
 	virtual void Awake() {};
 	virtual void Start() {};
 	virtual void FixedUpdate() {};
 	virtual void Update(const GameTimer& gt) = 0;
 	virtual void LateUpdate() {};
-	void RenderUpdate()
-	{
-		if (Transform.IsDirty())
-		{
-			DirectX::XMVECTOR S = DirectX::XMVectorSet(Transform.Scale.X, Transform.Scale.Y, Transform.Scale.Z, 0.0f);
-			DirectX::XMVECTOR T = DirectX::XMVectorSet(Transform.Position.X, Transform.Position.Y, Transform.Position.Z, 0.0f);
-			DirectX::XMVECTOR Q = DirectX::XMQuaternionRotationRollPitchYaw(
-				DirectX::XMConvertToRadians(Transform.Rotation.X), 
-				DirectX::XMConvertToRadians(Transform.Rotation.Y), 
-				DirectX::XMConvertToRadians(Transform.Rotation.Z));
-			DirectX::XMVECTOR zero = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
-
-			DirectX::XMStoreFloat4x4(&ri->World, DirectX::XMMatrixAffineTransformation(S, zero, Q, T));
-		}
-	}
+	void RenderUpdate() { DirectX::XMStoreFloat4x4(&ri->World, Transform.GetTransformMatrix()); }
 	virtual void OnDestroy() {};
+
+	void ExtractPitchYawRollFromXMMatrix(float* flt_p_PitchOut, float* flt_p_YawOut, float* flt_p_RollOut, const DirectX::XMMATRIX* XMMatrix_p_Rotation)
+	{
+		DirectX::XMFLOAT4X4 XMFLOAT4X4_Values;
+		DirectX::XMStoreFloat4x4(&XMFLOAT4X4_Values, DirectX::XMMatrixTranspose(*XMMatrix_p_Rotation));
+		*flt_p_PitchOut = (float)asin(-XMFLOAT4X4_Values._23);
+		*flt_p_YawOut = (float)atan2(XMFLOAT4X4_Values._13, XMFLOAT4X4_Values._33);
+		*flt_p_RollOut = (float)atan2(XMFLOAT4X4_Values._21, XMFLOAT4X4_Values._22);
+	}
 };

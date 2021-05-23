@@ -23,14 +23,14 @@ public:
 
 	void Update(const GameTimer& gt)
 	{
-		// Обновление камеры
-		if (_mainCamera != nullptr)
-		_mainCamera->Update(gt);
-
 		// Обновление всех объектов на сцене
 		for (auto it : GetAllGameObjects())
 			if (it.second != nullptr)
 				it.second->Update(gt);
+
+		// Обновление камеры
+		if (_mainCamera != nullptr)
+			_mainCamera->Update(gt);
 	}
 
 	void RenderUpdate()

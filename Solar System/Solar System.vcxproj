@@ -156,6 +156,9 @@
     <ClCompile Include="Waves.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Element.h" />
+    <ClInclude Include="Moon.h" />
+    <ClInclude Include="Katamari.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Particle.h" />
